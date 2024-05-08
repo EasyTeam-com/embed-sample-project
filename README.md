@@ -18,6 +18,8 @@ Then add the token to the file.
 AUTH_TOKEN=YOUR_AUTH_TOKEN
 ```
 
+3. Fill the `employeesData` constant in the `App.tsx` file with your employees data.
+
 ## Installation
 
 ```bash
@@ -25,6 +27,11 @@ cd EasyTeamDemo
 npm install
 ```
 
-## Setup
+## Usage
 
-You'll have to modify the token
+In the `EasyTeamDemo` directory, run the following commands to start the project for iOS / Android.
+
+```bash
+npm start ios
+npm start android
+```
