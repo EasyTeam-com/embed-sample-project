@@ -19,20 +19,24 @@ export default App;
  */
 import { NavigationContainer } from "@react-navigation/native";
 import { DarkTheme } from "@react-navigation/native";
-import { createNativeStackNavigator, NativeStackNavigationProp } from "@react-navigation/native-stack";
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+  NativeStackScreenProps,
+} from "@react-navigation/native-stack";
 import { HomeScreen } from "./screens/HomeScreen";
 import { ClockScreen } from "./screens/ClockScreen";
 import { TimesheetScreen } from "./screens/TImesheetScreen";
+import { EmployeesScreen } from "./screens/EmployeesScreen";
 
 const Stack = createNativeStackNavigator();
 
 export type RootStackParamList = {
   Home: undefined;
   Clock: undefined;
-  Timesheet: undefined;
+  Timesheet: { employeeId: string } | undefined;
+  Employees: undefined;
 };
-
-export type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Home">;
 
 const Navigation = () => {
   return (
@@ -41,6 +45,7 @@ const Navigation = () => {
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: "EasyTeam UI" }} />
         <Stack.Screen name="Clock" component={ClockScreen} />
         <Stack.Screen name="Timesheet" component={TimesheetScreen} />
+        <Stack.Screen name="Employees" component={EmployeesScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

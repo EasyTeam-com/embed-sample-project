@@ -1,6 +1,6 @@
-import React from 'react';
-import { Timesheets } from '@easyteam/ui';
+import React from "react";
+import { Timesheet } from "@easyteam/ui";
 
 export function TimesheetScreen() {
-  return <Timesheets />;
+  return <Timesheet />;
 }
