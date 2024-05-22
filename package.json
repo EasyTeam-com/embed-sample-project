@@ -10,8 +10,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@easyteam/ui": "^1.0.11",
-    "@react-native-community/datetimepicker": "^7.7.0",
+    "@easyteam/ui": "^1.0.12-beta.3",
+    "@react-navigation/elements": "^1.3.30",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
     "react": "18.2.0",

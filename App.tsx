@@ -28,6 +28,7 @@ import { HomeScreen } from "./screens/HomeScreen";
 import { ClockScreen } from "./screens/ClockScreen";
 import { TimesheetScreen } from "./screens/TImesheetScreen";
 import { EmployeesScreen } from "./screens/EmployeesScreen";
+import { ShiftFormScreen } from "./screens/ShiftFormScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +37,7 @@ export type RootStackParamList = {
   Clock: undefined;
   Timesheet: { employeeId: string } | undefined;
   Employees: undefined;
+  "Shift Form": { employeeId: string; date?: string };
 };
 
 const Navigation = () => {
@@ -46,6 +48,7 @@ const Navigation = () => {
         <Stack.Screen name="Clock" component={ClockScreen} />
         <Stack.Screen name="Timesheet" component={TimesheetScreen} />
         <Stack.Screen name="Employees" component={EmployeesScreen} />
+        <Stack.Screen name="Shift Form" component={ShiftFormScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
