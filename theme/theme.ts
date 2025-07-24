@@ -77,16 +77,22 @@ export const theme: CustomerTheme = {
     borderColor: '#E7E8DE',
     borderWidth: 2,
     borderRadius: 150,
+    fontWeight: '700',
   },
   primaryButton: {
     backgroundColor: '#F3BC08',
     borderRadius: 150,
+    fontWeight: '700',
     _disabled: {
       backgroundColor: '#E7E8DE',
     },
   },
-  destructiveOutlineButton: {
+  outlineButton: {
     borderRadius: 150,
+    fontWeight: '700',
+  },
+  destructiveOutlineButton: {
+    borderRadius: 15,
   },
   clock: {
     breakPicker: {

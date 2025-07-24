@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { StyleSheet, View } from "react-native";
 
 // Test import from local UI library
@@ -9,6 +10,8 @@ import { HeaderImage } from "@/components/HeaderImage";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#f0f0f0", dark: "#f0f0f0" }}
@@ -19,7 +22,7 @@ export default function Home() {
           name="Agenda"
           description="Manage schedules, open shifts, time offs, etc."
           icon="calendar"
-          onPress={() => {}}
+          onPress={() => router.push("/Agenda")}
         />
         <ComponentButton
           name="Calendar Sync"
@@ -33,7 +36,7 @@ export default function Home() {
           name="Clock"
           description="Clock in and out, take breaks, add shift notes."
           icon="timer"
-          onPress={() => {}}
+          onPress={() => router.push("/Clock")}
         />
         <ComponentButton
           name="Timesheet"
