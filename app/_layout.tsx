@@ -52,6 +52,24 @@ export default function RootLayout() {
           <Stack.Screen name="Clock" options={{ title: "Clock In/Out" }} />
           <Stack.Screen name="ShiftNotes" options={{ title: "Shift Notes" }} />
           <Stack.Screen name="Agenda" options={{ title: "Agenda" }} />
+          <Stack.Screen 
+            name="Timesheet" 
+            options={{ 
+              title: "Timesheet",
+              headerShown: true,
+              // Note: Header buttons would need to be configured here or in the component
+              // For now, we'll use the default back button
+            }} 
+          />
+          <Stack.Screen 
+            name="Employees" 
+            options={{ 
+              title: "Employees",
+              headerShown: true,
+            }} 
+          />
+          <Stack.Screen name="ShiftForm" options={{ title: "Shift Form" }} />
+          <Stack.Screen name="Settings" options={{ title: "Settings" }} />
           <Stack.Screen name="+not-found" />
         </Stack>
         <StatusBar style="auto" />

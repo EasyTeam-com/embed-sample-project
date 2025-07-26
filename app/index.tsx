@@ -1,13 +1,10 @@
 import { useRouter } from "expo-router";
 import { StyleSheet, View } from "react-native";
 
-// Test import from local UI library
-// Uncomment the line below to test if the library is properly linked
-// import { Button } from "@easyteam/ui";
-
 import ComponentButton from "@/components/ComponentButton";
 import { HeaderImage } from "@/components/HeaderImage";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
+import dayjs from "dayjs";
 
 export default function Home() {
   const router = useRouter();
@@ -42,21 +39,56 @@ export default function Home() {
           name="Timesheet"
           description="Manage employee shifts and notes."
           icon="person"
-          onPress={() => {}}
+          onPress={() => router.push({
+            pathname: "/Timesheet",
+            params: {
+              employeeId: "external-employee-organization-admin",
+              startDate: dayjs().startOf('week').subtract(1, 'day').format(),
+              endDate: dayjs().endOf('week').subtract(1, 'day').format()
+            }
+          })}
         />
       </View>
       <View style={styles.row}>
         <ComponentButton
-          name="Timesheets"
+          name="Employees"
           description="View list of employees and their timesheets."
           icon="people"
-          onPress={() => {}}
+          onPress={() => router.push("/Employees")}
         />
         <ComponentButton
           name="Settings"
           description="Manage your settings for geolocation, breaks, etc."
           icon="cog"
-          onPress={() => {}}
+          onPress={() => router.push("/Settings")}
+        />
+      </View>
+      <View style={styles.row}>
+        <ComponentButton
+          name="Add Shift"
+          description="Create a new shift for an employee."
+          icon="add"
+          onPress={() => router.push({
+            pathname: "/ShiftForm",
+            params: {
+              date: new Date().toISOString(),
+              employeeId: "external-employee-organization-admin",
+              mode: "ADD"
+            }
+          })}
+        />
+        <ComponentButton
+          name="Edit Shift"
+          description="Edit a shift for an employee."
+          icon="add"
+          onPress={() => router.push({
+            pathname: "/ShiftForm",
+            params: {
+              date: new Date().toISOString(),
+              employeeId: "external-employee-organization-admin",
+              mode: "EDIT"
+            }
+          })}
         />
       </View>
     </ParallaxScrollView>

@@ -1,6 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
-import { Alert, Text, TouchableOpacity } from "react-native";
+import {
+  Alert,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 
 import { locations } from "@/configs/locations";
 import { Clock, ClockRef, EventDetailsClockInOut } from "@easyteam/ui";
@@ -59,14 +65,23 @@ export default function ClockScreen() {
   }, [renders, setRenders, setHasOpenedShift]);
 
   return (
-    <Clock
-      ref={clockRef}
-      onEvent={onClockInOutEvent}
-      longitude={locations[0].longitude}
-      latitude={locations[0].latitude}
-      customStrings={{
-        restrictClockIn: "Restricted!",
-      }}
-    />
+    <SafeAreaView style={styles.container}>
+      <Clock
+        ref={clockRef}
+        onEvent={onClockInOutEvent}
+        longitude={locations[0].longitude}
+        latitude={locations[0].latitude}
+        customStrings={{
+          restrictClockIn: "Restricted!",
+        }}
+      />
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+  },
+});
