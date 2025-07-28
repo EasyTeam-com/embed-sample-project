@@ -1,16 +1,29 @@
-# Welcome to your Expo app 👋
+# Easyteam Demo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
 ## Get started
 
-1. Install dependencies
+1. Add your easyteam npm token to a `.npmrc` file in the root folder
+
+2. Install dependencies
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. Configure environment variables (optional)
+
+   Create a `.env` file in the root directory with the following content:
+
+   ```bash
+   API_BASE_PATH=http://192.168.1.1:9999/DEMO_API_URL
+   ACCESS_TOKEN=example.token
+   ```
+
+   If no `.env` file is provided, the app will use the default value, which will be the sandbox api.
+
+4. Start the app
 
    ```bash
    npx expo start
@@ -23,28 +36,15 @@ In the output, you'll find options to open the app in a
 - [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
 - [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Environment Variables
 
-## Get a fresh project
+The app uses the following environment variables:
 
-When you're ready, run:
+- `API_BASE_PATH`: The base URL for the EasyTeam API (default: `https://www.easyteam.io/sandbox/embed`)
+- `ACCESS_TOKEN`: The signed token for the user that will be using the demo app.
 
-```bash
-npm run reset-project
-```
+## Integration
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Please use our integration guide available in our [mobile SDK integration](https://docs.easyteam.com/mobile-sdk-integration).
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+If there are any questions or thoughts, please contact us!
