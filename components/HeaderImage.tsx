@@ -1,8 +1,10 @@
+import { useThemeColor } from "@/hooks/useThemeColor";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { StyleSheet, View } from "react-native";
 
 const ICON_SIZE = 130;
 export function HeaderImage() {
+  const iconColor = useThemeColor({ light: "#313232", dark: "#e0e0e0" }, "text");
   return (
     <View style={styles.container}>
       <Ionicons
@@ -14,7 +16,7 @@ export function HeaderImage() {
       <Ionicons
         name="person"
         size={ICON_SIZE + 20}
-        color="#313132"
+        color={iconColor}
         style={[styles.offsetVertical, styles.offsetHorizontal, styles.zIndex]}
       />
       <Ionicons

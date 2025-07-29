@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: "#f0f0f0", dark: "#f0f0f0" }}
+      headerBackgroundColor={{ light: "#f0f0f0", dark: "#303131" }}
       headerImage={<HeaderImage />}
     >
       <View style={styles.row}>

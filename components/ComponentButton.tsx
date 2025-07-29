@@ -1,5 +1,6 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 
+import { useThemeColor } from "@/hooks/useThemeColor";
 import {
   Platform,
   Pressable,
@@ -8,6 +9,7 @@ import {
   View,
 } from "react-native";
 import { ThemedText } from "./ThemedText";
+import { ThemedView } from "./ThemedView";
 
 type Props = {
   name: string;
@@ -27,26 +29,30 @@ export default function ComponentButton({
 
   const color = "#ff3f60";
 
+  const backgroundColor = useThemeColor(
+    { light: "#fff", dark: "#303131" },
+    "background"
+  );
   return (
-    <Pressable
-      onPress={onPress}
-      style={({ pressed }) => [
-        styles.button,
-        { opacity: pressed ? 0.5 : 1, maxWidth: buttonWidth },
-      ]}
+    <ThemedView
+      style={[{ backgroundColor, maxWidth: buttonWidth }, styles.button]}
     >
-      <View style={styles.titleContainer}>
-        <Ionicons name={icon} size={32} color={color} />
-        <ThemedText type="defaultSemiBold">{name}</ThemedText>
-      </View>
-      <ThemedText type="subtitle">{description}</ThemedText>
-    </Pressable>
+      <Pressable
+        onPress={onPress}
+        style={({ pressed }) => [{ opacity: pressed ? 0.5 : 1 }]}
+      >
+        <View style={styles.titleContainer}>
+          <Ionicons name={icon} size={32} color={color} />
+          <ThemedText type="defaultSemiBold">{name}</ThemedText>
+        </View>
+        <ThemedText type="subtitle">{description}</ThemedText>
+      </Pressable>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "white",
     padding: 10,
     borderRadius: 10,
     flex: 1,
@@ -72,5 +78,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 10,
     flex: 1,
+    marginBottom: 10,
   },
 });
