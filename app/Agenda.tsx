@@ -1,3 +1,4 @@
+import { ThemedText } from "@/components/ThemedText";
 import { AgendaRef, AgendaSchedule } from "@easyteam/ui";
 import { useHeaderHeight } from "@react-navigation/elements";
 import { useNavigation } from "@react-navigation/native";
@@ -10,7 +11,6 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -23,7 +23,7 @@ const HeaderRight = ({
   return (
     <View>
       <TouchableOpacity onPress={() => agendaRef?.current?.openAddEditShift()}>
-        <Text style={styles.addButton}>+</Text>
+        <ThemedText style={styles.addButton}>+</ThemedText>
       </TouchableOpacity>
     </View>
   );
@@ -84,7 +84,5 @@ const styles = StyleSheet.create({
   },
   addButton: {
     fontSize: 30,
-    color: "#313132",
-    fontWeight: "300",
   },
 });

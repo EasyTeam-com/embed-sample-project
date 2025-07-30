@@ -37,7 +37,8 @@ export default {
     extra: {
       apiBasePath:
         process.env.API_BASE_PATH || "https://www.easyteam.io/sandbox/embed",
-      token: process.env.ACCESS_TOKEN,
+      jwtPrivateKey: process.env.JWT_PRIVATE_KEY,
+      partnerId: process.env.PARTNER_ID,
     },
   },
 };

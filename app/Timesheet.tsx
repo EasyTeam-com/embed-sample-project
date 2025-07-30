@@ -1,8 +1,9 @@
+import { ThemedText } from "@/components/ThemedText";
 import { SHIFT_FORM_MODES, Timesheet, TimesheetRef } from "@easyteam/ui";
 import { useFocusEffect } from "@react-navigation/native";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
 export default function TimesheetScreen() {
   const ref = useRef<TimesheetRef>(null);
@@ -54,7 +55,7 @@ export default function TimesheetScreen() {
           title: "Timesheet",
           headerRight: () => (
             <TouchableOpacity onPress={handleAddShift} style={styles.addButton}>
-              <Text style={styles.addButtonText}>+</Text>
+              <ThemedText style={styles.addButtonText}>+</ThemedText>
             </TouchableOpacity>
           ),
         }}
@@ -98,7 +99,6 @@ const styles = StyleSheet.create({
     padding: 2,
   },
   addButtonText: {
-    color: "#303131",
     fontSize: 30,
     textAlign: "center",
     textAlignVertical: "center",

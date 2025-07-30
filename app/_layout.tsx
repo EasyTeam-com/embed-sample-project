@@ -10,37 +10,67 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 
+import { ThemedText } from "@/components/ThemedText";
 import { locations } from "@/configs/locations";
 import { roles } from "@/configs/roles";
 import { users } from "@/configs/users";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { theme } from "@/theme/theme";
+import { encodeJWT } from "@/utils/encodeJWT";
 import { Organization } from "@easyteam/core-ui";
 import { EasyTeamProvider } from "@easyteam/ui";
+import { useEffect, useMemo, useState } from "react";
+import { ActivityIndicator, Alert, SafeAreaView, Text, View } from "react-native";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const [isSigningToken, setIsSigningToken] = useState(false);
+  const [token, setToken] = useState<string | null>(null);
   const [loaded] = useFonts({
     Inter: Inter_500Medium,
   });
+
+  const organization: Organization = useMemo(
+    () => ({
+      id: "external-organization-id-1",
+      name: "Demo Organization",
+    }),
+    []
+  );
+
+  useEffect(() => {
+    setIsSigningToken(true);
+
+    const privateKey = Constants.expoConfig?.extra?.jwtPrivateKey || "";
+    const partnerId = Constants.expoConfig?.extra?.partnerId || "";
+    try {
+      const generatedToken = encodeJWT(
+        users[0],
+        locations[0],
+        organization,
+        partnerId,
+        privateKey
+      );
+      console.log(98211, generatedToken);
+
+      setToken(generatedToken);
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Error", "Error signing token");
+    } finally {
+      setIsSigningToken(false);
+    }
+  }, [organization]);
 
   if (!loaded) {
     // Async font loading only occurs in development.
     return null;
   }
-
-  const token = Constants.expoConfig?.extra?.token;
-
-  const organization: Organization = {
-    id: "external-organization-id-1",
-    name: "Organization 1",
-  };
-
   const apiBasePath =
     Constants.expoConfig?.extra?.apiBasePath ||
     "https://www.easyteam.io/sandbox/embed";
 
-  return (
+  return token && !isSigningToken ? (
     <EasyTeamProvider
       token={token}
       theme={theme}
@@ -77,5 +107,20 @@ export default function RootLayout() {
         <StatusBar style="auto" />
       </ThemeProvider>
     </EasyTeamProvider>
+  ) : (
+    <SafeAreaView style={{ flex: 1 }}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          padding: 40,
+        }}
+      >
+        <Text>Signing token...</Text>
+        <ActivityIndicator size="large" color="#FF3479" />
+        <ThemedText>Signing token...</ThemedText>
+      </View>
+    </SafeAreaView>
   );
 }

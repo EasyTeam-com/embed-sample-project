@@ -75,9 +75,9 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     gap: 10,
     flex: 1,
-    marginBottom: 10,
+    marginBottom: 5,
   },
 });

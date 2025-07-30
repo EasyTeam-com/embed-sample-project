@@ -4,10 +4,10 @@ import {
   Alert,
   SafeAreaView,
   StyleSheet,
-  Text,
   TouchableOpacity,
 } from "react-native";
 
+import { ThemedText } from "@/components/ThemedText";
 import { locations } from "@/configs/locations";
 import { Clock, ClockRef, EventDetailsClockInOut } from "@easyteam/ui";
 import { useRouter } from "expo-router";
@@ -16,8 +16,11 @@ const HeaderRight = ({ hasOpenedShift }: { hasOpenedShift: boolean }) => {
   const router = useRouter();
 
   return hasOpenedShift ? (
-    <TouchableOpacity onPress={() => router.push("/ShiftNotes")}>
-      <Text>Notes</Text>
+    <TouchableOpacity
+      style={styles.shiftNotesButton}
+      onPress={() => router.push("/ShiftNotes")}
+    >
+      <ThemedText style={styles.shiftNotesButtonText}>Notes</ThemedText>
     </TouchableOpacity>
   ) : null;
 };
@@ -83,5 +86,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+  },
+  shiftNotesButton: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  shiftNotesButtonText: {
+    fontWeight: "bold",
   },
 });
