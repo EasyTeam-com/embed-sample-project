@@ -12,14 +12,14 @@ import "react-native-reanimated";
 
 import { ThemedText } from "@/components/ThemedText";
 import { locations } from "@/configs/locations";
+import { organization } from "@/configs/organization";
 import { roles } from "@/configs/roles";
 import { users } from "@/configs/users";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { theme } from "@/theme/theme";
 import { encodeJWT } from "@/utils/encodeJWT";
-import { Organization } from "@easyteam/core-ui";
 import { EasyTeamProvider } from "@easyteam/ui";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { ActivityIndicator, Alert, SafeAreaView, Text, View } from "react-native";
 
 export default function RootLayout() {
@@ -30,13 +30,6 @@ export default function RootLayout() {
     Inter: Inter_500Medium,
   });
 
-  const organization: Organization = useMemo(
-    () => ({
-      id: "external-organization-id-1",
-      name: "Demo Organization",
-    }),
-    []
-  );
 
   useEffect(() => {
     setIsSigningToken(true);
@@ -60,7 +53,7 @@ export default function RootLayout() {
     } finally {
       setIsSigningToken(false);
     }
-  }, [organization]);
+  }, []);
 
   if (!loaded) {
     // Async font loading only occurs in development.

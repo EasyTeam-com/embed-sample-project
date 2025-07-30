@@ -45,6 +45,16 @@ The app uses the following environment variables:
 - `JWT_PRIVATE_KEY`: The key to sign your token through the backend.
 - `PARTNER_ID`: Provided partner id.
 
+## Configs
+
+The config folder contains files to config your organization's info. The files are separated in:
+
+- geolocation
+- locations
+- organization
+- roles
+- users
+
 ## Integration
 
 Please use our integration guide available in our [mobile SDK integration](https://docs.easyteam.com/mobile-sdk-integration).
