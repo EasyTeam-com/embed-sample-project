@@ -17,6 +17,8 @@ export default {
         backgroundColor: "#ffffff",
       },
       edgeToEdgeEnabled: true,
+      softwareKeyboardLayoutMode: "pan",
+      allowBackup: true,
     },
     plugins: [
       "expo-router",

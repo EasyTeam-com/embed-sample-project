@@ -8,6 +8,7 @@ import Constants from "expo-constants";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
 
 import { locations } from "@/configs/locations";
@@ -41,41 +42,43 @@ export default function RootLayout() {
     "https://www.easyteam.io/sandbox/embed";
 
   return (
-    <EasyTeamProvider
-      token={token}
-      theme={theme}
-      employees={users}
-      locations={locations}
-      roles={roles}
-      organization={organization}
-      basePath={apiBasePath}
-    >
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="Clock"
-            options={{ title: "Clock In/Out", headerBackTitle: "Home" }}
-          />
-          <Stack.Screen name="ShiftNotes" options={{ title: "Shift Notes" }} />
-          <Stack.Screen
-            name="Agenda"
-            options={{ title: "Agenda", headerBackTitle: "Home" }}
-          />
-          <Stack.Screen name="Timesheet" />
-          <Stack.Screen
-            name="Employees"
-            options={{ title: "Employees", headerBackTitle: "Home" }}
-          />
-          <Stack.Screen name="ShiftForm" />
-          <Stack.Screen
-            name="Settings"
-            options={{ title: "Settings", headerBackTitle: "Home" }}
-          />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style="auto" />
-      </ThemeProvider>
-    </EasyTeamProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <EasyTeamProvider
+        token={token}
+        theme={theme}
+        employees={users}
+        locations={locations}
+        roles={roles}
+        organization={organization}
+        basePath={apiBasePath}
+      >
+        <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+          <Stack>
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="Clock"
+              options={{ title: "Clock In/Out", headerBackTitle: "Home" }}
+            />
+            <Stack.Screen name="ShiftNotes" options={{ title: "Shift Notes" }} />
+            <Stack.Screen
+              name="Agenda"
+              options={{ title: "Agenda", headerBackTitle: "Home" }}
+            />
+            <Stack.Screen name="Timesheet" />
+            <Stack.Screen
+              name="Employees"
+              options={{ title: "Employees", headerBackTitle: "Home" }}
+            />
+            <Stack.Screen name="ShiftForm" />
+            <Stack.Screen
+              name="Settings"
+              options={{ title: "Settings", headerBackTitle: "Home" }}
+            />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+          <StatusBar style="auto" />
+        </ThemeProvider>
+      </EasyTeamProvider>
+    </GestureHandlerRootView>
   );
 }

@@ -2,11 +2,11 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { useThemeColor } from "@/hooks/useThemeColor";
 import {
-  Platform,
-  Pressable,
-  StyleSheet,
-  useWindowDimensions,
-  View,
+    Platform,
+    Pressable,
+    StyleSheet,
+    useWindowDimensions,
+    View,
 } from "react-native";
 import { ThemedText } from "./ThemedText";
 import { ThemedView } from "./ThemedView";
@@ -39,7 +39,12 @@ export default function ComponentButton({
     >
       <Pressable
         onPress={onPress}
-        style={({ pressed }) => [{ opacity: pressed ? 0.5 : 1 }]}
+        hitSlop={8}
+        android_ripple={{ color: 'rgba(0, 0, 0, 0.1)', borderless: false }}
+        style={({ pressed }) => [
+          styles.pressable,
+          { opacity: pressed ? 0.5 : 1 }
+        ]}
       >
         <View style={styles.titleContainer}>
           <Ionicons name={icon} size={32} color={color} />
@@ -71,6 +76,11 @@ const styles = StyleSheet.create({
         borderColor: "#c1c2c2",
       },
     }),
+  },
+  pressable: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   titleContainer: {
     flexDirection: "row",
