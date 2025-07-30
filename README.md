@@ -18,7 +18,8 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 
    ```bash
    API_BASE_PATH=http://192.168.1.1:9999/DEMO_API_URL
-   ACCESS_TOKEN=example.token
+   JWT_PRIVATE_KEY=KEY
+   PARTNER_ID=partner.id
    ```
 
    If no `.env` file is provided, the app will use the default value, which will be the sandbox api.
@@ -41,7 +42,8 @@ In the output, you'll find options to open the app in a
 The app uses the following environment variables:
 
 - `API_BASE_PATH`: The base URL for the EasyTeam API (default: `https://www.easyteam.io/sandbox/embed`)
-- `ACCESS_TOKEN`: The signed token for the user that will be using the demo app.
+- `JWT_PRIVATE_KEY`: The key to sign your token through the backend.
+- `PARTNER_ID`: Provided partner id.
 
 ## Integration
 
