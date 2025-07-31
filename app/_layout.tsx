@@ -10,7 +10,6 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 
-import { ThemedText } from "@/components/ThemedText";
 import { locations } from "@/configs/locations";
 import { organization } from "@/configs/organization";
 import { roles } from "@/configs/roles";
@@ -37,6 +36,10 @@ export default function RootLayout() {
     Inter: Inter_500Medium,
   });
 
+  const apiBasePath =
+    Constants.expoConfig?.extra?.apiBasePath ||
+    "https://www.easyteam.io/sandbox/embed";
+
   useEffect(() => {
     setIsSigningToken(true);
 
@@ -50,24 +53,24 @@ export default function RootLayout() {
         partnerId,
         privateKey
       );
-      console.log(98211, generatedToken);
 
       setToken(generatedToken);
     } catch (error) {
       console.error(error);
-      Alert.alert("Error", "Error signing token");
+
+      Alert.alert(
+        `${apiBasePath}`,
+        `Error signing token for partner: ${partnerId}`
+      );
     } finally {
       setIsSigningToken(false);
     }
-  }, []);
+  }, [apiBasePath]);
 
   if (!loaded) {
     // Async font loading only occurs in development.
     return null;
   }
-  const apiBasePath =
-    Constants.expoConfig?.extra?.apiBasePath ||
-    "https://www.easyteam.io/sandbox/embed";
 
   return token && !isSigningToken ? (
     <EmployeesProvider>
@@ -121,11 +124,11 @@ export default function RootLayout() {
           justifyContent: "center",
           alignItems: "center",
           padding: 40,
+          gap: 20,
         }}
       >
         <Text>Signing token...</Text>
         <ActivityIndicator size="large" color="#FF3479" />
-        <ThemedText>Signing token...</ThemedText>
       </View>
     </SafeAreaView>
   );
