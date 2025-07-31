@@ -1,9 +1,11 @@
+import { useEmployees } from "@/providers/EmployeesContext";
 import { EmployeeData } from "@easyteam/core-ui";
 import { Settings } from "@easyteam/ui";
 import { useCallback } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 
 export default function SettingsScreen() {
+  const { setEmployees, setIsGlobalTimeTrackingEnabled } = useEmployees();
   const onSave = useCallback(
     ({
       employees,
@@ -13,8 +15,10 @@ export default function SettingsScreen() {
       isGlobalTrackingEnabled: boolean;
     }) => {
       console.log("onSave", { employees, isGlobalTrackingEnabled });
+      setEmployees?.(employees);
+      setIsGlobalTimeTrackingEnabled?.(isGlobalTrackingEnabled);
     },
-    []
+    [setEmployees, setIsGlobalTimeTrackingEnabled]
   );
 
   return (
